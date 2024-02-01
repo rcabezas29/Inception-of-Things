@@ -19,3 +19,7 @@ spec:
         app2:
           serviceName: app2
           servicePort: 80
+      - path: /app3
+        app3:
+          serviceName: app3
+          servicePort: 80
