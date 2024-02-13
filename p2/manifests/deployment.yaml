@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app1-deployment
+  name: app-one
   labels:
     app: app1
 spec:
@@ -23,7 +23,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app2-deployment
+  name: app-two
   labels:
     app: app2
 spec:
@@ -45,7 +45,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app3-deployment
+  name: app-three
   labels:
     app: app3
 spec:
