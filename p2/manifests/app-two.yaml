@@ -18,7 +18,7 @@ spec:
         - name: app-two
           image: paulbouwer/hello-kubernetes:1.10
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           env:
             - name: MESSAGE
               value: "Hello from App2"
@@ -29,10 +29,9 @@ metadata:
   name: app-two
 spec:
   selector:
-    app.kubernetes.io/name: app-two
+    app: app-two
   ports:
-  - name: app-two
-    appProtocol: http
-    protocol: TCP
-    port: 80
-    targetPort: 80
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
