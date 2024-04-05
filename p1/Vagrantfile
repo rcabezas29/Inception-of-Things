@@ -15,10 +15,11 @@ Vagrant.configure("2") do |config|
     
     rcabezas_config.vm.provision "shell", inline: <<-SHELL
       apt-get update
-      apt-get install -y curl
+      apt-get install -y curl net-tools
 
       mkdir -p /etc/rancher/k3s && cp /config/master.yaml /etc/rancher/k3s/config.yaml
       curl -sfL https://get.k3s.io | sh -s - server
+      ip link add eth1 type dummy && ip addr add 192.168.56.110/24 dev eth1 && ip link set eth1 up
     SHELL
   end
 
@@ -28,10 +29,11 @@ Vagrant.configure("2") do |config|
 
     alvrodri_config.vm.provision "shell", inline: <<-SHELL
       apt-get update
-      apt-get install -y curl
+      apt-get install -y curl net-tools
 
       mkdir -p /etc/rancher/k3s && cp /config/slave.yaml /etc/rancher/k3s/config.yaml
       curl -sfL https://get.k3s.io | sh -s - agent
+      ip link add eth1 type dummy && ip addr add 192.168.56.111/24 dev eth1 && ip link set eth1 up
     SHELL
   end
 
