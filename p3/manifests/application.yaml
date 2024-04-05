@@ -2,12 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argocd-iot
+  namespace: argocd
 spec:
-  project: development
+  project: default
   source:
-    repoURL: https://github.com/rcabezas29/iot-cicd.git
+    repoURL: https://github.com/rcabezas29/app-iot.git
     targetRevision: HEAD
-    path: /
+    path: .
   destination:
     server: https://kubernetes.default.svc
     namespace: dev

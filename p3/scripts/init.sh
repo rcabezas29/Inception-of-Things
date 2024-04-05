@@ -9,7 +9,8 @@ sudo kubectl create namespace dev
 sudo kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 # Wait for pods to be ready
-sudo kubectl wait --for=condition=Ready pods --all -n argocd
+sleep 5
+sudo kubectl wait --for=condition=Ready pods --all -n argocd --timeout=-1s
 
 # Set hash of password (https://en.wikipedia.org/wiki/Bcrypt) of argocd dashboard (password)
 sudo kubectl -n argocd patch secret argocd-secret \
@@ -22,4 +23,4 @@ sudo kubectl -n argocd patch secret argocd-secret \
 sudo kubectl apply -f /vagrant/manifests/application.yaml
 
 # Port forward argocd dashboard to port 8081
-sudo kubectl port-forward svc/argocd-server --address="192.168.56.97" -n argocd 8081:80 &
+nohup sudo kubectl port-forward svc/argocd-server --address="192.168.56.97" -n argocd 8081:80 &
