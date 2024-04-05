@@ -10,8 +10,9 @@ Vagrant.configure("2") do |config|
       ubuntu_config.vm.hostname = "ubuntu"
       
       ubuntu_config.vm.network "private_network", ip: "192.168.56.97"
-      ubuntu_config.vm.network "forwarded_port", guest: 8081, host: 8081
-      ubuntu_config.vm.network "forwarded_port", guest: 8082, host: 8082
+      
+      ubuntu_config.vm.network "forwarded_port", guest: 8080, host: 8080
+      ubuntu_config.vm.network "forwarded_port", guest: 8888, host: 8888
 
       ubuntu_config.vm.provision "shell", path: "scripts/install.sh"
       ubuntu_config.vm.provision "shell", path: "scripts/init.sh"
