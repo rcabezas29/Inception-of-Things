@@ -1,5 +1,5 @@
 # Create a cluster named "cluster" with 1 node
-sudo k3d cluster create cluster -p "80:80@loadbalancer" -p "443:443@loadbalancer"
+sudo k3d cluster create cluster -p "80:80@loadbalancer" -p "443:443@loadbalancer" -p "8888:8888@loadbalancer" --k3s-arg "--disable=traefik@server:0"
 
 # Create two namespaces
 sudo kubectl create namespace argocd
@@ -22,6 +22,5 @@ sudo kubectl -n argocd patch secret argocd-secret \
 # Deploy argocd application listener
 sudo kubectl apply -f /vagrant/manifests/application.yaml
 
-# Port forward argocd dashboard to port 8080 and wil's app to port 8888
-while true; do sudo kubectl port-forward svc/argocd-server -n argocd --address="0.0.0.0" 8080:443; done > /dev/null 2>&1 &
-while true; do sudo kubectl port-forward pod/$(sudo kubectl get pods -n dev | awk '{print $1}' | tail -1) -n dev --address="0.0.0.0" 8888:8888; done > /dev/null 2>&1 &
+# Patch argocd-server service to use LoadBalancer
+sudo kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
