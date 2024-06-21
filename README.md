@@ -3,7 +3,7 @@ K3d and K3s with Vagrant
 
 ## p1 - K3s and Vagrant
 
-This README provides guidance on setting up a Kubernetes (K3s) cluster using Vagrant with two virtual machines: one as the server (controller) and the other as a worker node. Both machines are configured with specific IP addresses and are set up to allow passwordless SSH access.
+Setting up a Kubernetes (K3s) cluster using Vagrant with two virtual machines: one as the server (controller) and the other as a worker node. Both machines are configured with specific IP addresses and are set up to allow passwordless SSH access.
 
 ### Overview
 
