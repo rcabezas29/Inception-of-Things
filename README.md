@@ -3,7 +3,40 @@ K3d and K3s with Vagrant
 
 ## p1 - K3s and Vagrant
 
+This README provides guidance on setting up a Kubernetes (K3s) cluster using Vagrant with two virtual machines: one as the server (controller) and the other as a worker node. Both machines are configured with specific IP addresses and are set up to allow passwordless SSH access.
 
+### Overview
+
+Two machines will be set up using Vagrant and K3s will be installed on both:
+- **Server**: Runs K3s in controller mode.
+- **ServerWorker**: Runs K3s in agent mode.
+
+### Specifications
+
+- **Machine Names**: The names of the machines must be the login of a team member.
+  - The first machine (Server) will have a hostname ending in 'S'.
+  - The second machine (ServerWorker) will have a hostname ending in 'SW'.
+- **IP Addresses**: Each machine will have a dedicated IP on the eth1 interface.
+  - Server: `192.168.56.110`
+  - ServerWorker: `192.168.56.111`
+- **SSH Access**: Both machines must be accessible via SSH without a password.
+
+### Prerequisites
+
+- **Vagrant**: Used to create and manage the virtual machines.
+- **VirtualBox**: Hypervisor to run the virtual machines.
+
+### Setup
+
+1. **Vagrantfile**: Create a Vagrantfile to define and configure both machines.
+2. **Starting the Machines**: Use Vagrant to start and provision both machines.
+```bash
+vagrant up
+```
+3. **Accessing the Machines**: Connect to the machines using SSH.
+```bash
+vagrant ssh <hostname>
+```
 
 ## p2 - K3s and three simple applications
 
